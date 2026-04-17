@@ -114,13 +114,11 @@ export function ChatApp() {
       abortRef.current = controller;
 
       try {
-        const resp = await fetch("/_serverFn/chat/streamChat", {
+        const resp = await fetch("/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            data: {
-              messages: convoMessages.map((m) => ({ role: m.role, content: m.content })),
-            },
+            messages: convoMessages.map((m) => ({ role: m.role, content: m.content })),
           }),
           signal: controller.signal,
         });
